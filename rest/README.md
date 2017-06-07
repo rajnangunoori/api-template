@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a geneirc API template that can be extended based on the use case's needs.
+This is a geneirc API template that can be extended based on the use case's needs. It can be used as is or further extended based on the use case's needs. We recommend that it used by the wider community of Mule developers within the Organization.
 
 > **NOTE**: This template is suitable for **RESTful APIs only**. Please use a different template for SOAP-based APIs.
 
@@ -43,17 +43,9 @@ The template is designed to be customized. Basic customization should be done ev
 
 ![](./images/customize_03.png)
 
-(4) In `pom.xml` rename `api-template-v1.git` inside `<scm>` according to the project's name (e.g. `my-new-api-v1.git`).
+(4) Update `log4j2.xml` file under `src/main/resources` by renaming all the occurrences of `api-template-v1` in the `<RollingFile>` element with the same name used for the project's root folder above (e.g. `my-new-api-v1`). Leave all the remaining parts of `log4j2.xml` unchanged and just update the `api-template-v1` occurrences where they appear in the file. See picture below for an example.
 
 ![](./images/customize_04.png)
-
-(5) Also ensure that `<url>` of the `<repository>` under `<distributionManagement>` section in `pom.xml` matches the correct repository.
-
-![](./images/customize_05.png)
-
-(6) Update `log4j2.xml` file under `src/main/resources` by renaming all the occurrences of `api-template-v1` in the `<RollingFile>` element with the same name used for the project's root folder above (e.g. `my-new-api-v1`). Leave all the remaining parts of `log4j2.xml` unchanged and just update the `api-template-v1` occurrences where they appear in the file. See picture below for an example.
-
-![](./images/customize_06.png)
 
 ## Properties Configuration
 
@@ -215,7 +207,7 @@ It is possible to change the HTTP Listener Connector configuration by accessing 
 
 Most often on-premises Mule API applications are associated to a [Mule Domain](https://docs.mulesoft.com/mule-user-guide/v/3.8/shared-resources) specifically created for APIs (API Gateway Domain). The API Gateway Domain's purpose is to ensure that all the APIs deployed within a Mule Runtime instance share the same HTTP listener. In this way all the APIs listen on the same host and TCP port. Using an API Gateway Domain is not mandatory, but in absence of a shared domain, each API needs to be exposed on a different TCP port.
 
-(1) In order to bind your API Template to an API Gateway Domain, [download](TODO: linkToDomainProject) and open the `api-gateway` domain project in Anypoint Studio. Then, in the `api-template-v1` (or whatever API project), double-click on `mule-project.xml` in the project root folder, and select the appropriate API Gateway Domain.
+(1) In order to bind your API Template to an API Gateway Domain, [download](../domain/api-gateway) and open the `api-gateway` domain project in Anypoint Studio. Then, in the `api-template-v1` (or whatever API project), double-click on `mule-project.xml` in the project root folder, and select the appropriate API Gateway Domain.
 
 ![](./images/api_domain_01.png)
 
