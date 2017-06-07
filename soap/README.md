@@ -22,8 +22,8 @@ Use the following software in order to run this template:
 
 * Oracle Java Development Kit (JDK) 1.8
 * Apache Maven 3.2.1 or later (ensure Mule EE Repository is setup with credentials)
-* Anypoint Studio 6.2.0 or later, including the following extensions:
-  * Mule ESB Server Runtime 3.8.3 EE
+* Anypoint Studio 6.2.5 or later, including the following extensions:
+  * Mule ESB Server Runtime 3.8.4 EE
 
 The project will need to be imported following the POM import wizard. Once the project is imported in Anypoint Studio, it can be configured via its properties configuration files: `local.properties`, `dev.properties`, `qua.properties`, `sit.properties`, and `prod.properties`.
 
