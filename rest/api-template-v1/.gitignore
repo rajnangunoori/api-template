@@ -25,6 +25,7 @@ tmp/**/*
 # Recommended for Maven based projects 
 .project
 .classpath
+local.properties
 
 # External tool builders
 .externalToolBuilders/
