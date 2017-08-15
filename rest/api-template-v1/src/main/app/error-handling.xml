@@ -97,7 +97,7 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
         </catch-exception-strategy>
         <catch-exception-strategy when="#[exception.causedBy(java.lang.RuntimeException)]" doc:name="Caused by (java.lang.RuntimeException)">
             <expression-component doc:name="Set Error Info"><![CDATA[if (flowVars.httpStatus == null || flowVars.httpStatus == '') {
-	message.outboundProperties['http.status'] = 500;
+	message.outboundProperties['http.status'] = "500";
 } else {
 	message.outboundProperties['http.status'] = flowVars.httpStatus;
 }

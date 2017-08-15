@@ -314,7 +314,7 @@ Since the Catch Exception Strategy is defined inside a Choice Exception Strategy
 It is possible to generate custom errors anywhere in the application flows by just using a Groovy Script Component. The snippet below will need to be used inside the Groovy Script Component. The values of the flow variables can be changed according to the use case needs.
 
 ```
-flowVars['httpStatus'] = 400;
+flowVars['httpStatus'] = "400";
 flowVars['errorMessage'] = "This is a custom error message";
 flowVars['errorDescription'] = "Custom detailed error message";
 throw new java.lang.RuntimeException(flowVars['errorMessage']);
