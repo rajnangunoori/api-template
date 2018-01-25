@@ -93,6 +93,7 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
             <flow-ref name="global-not-acceptable-response-sub-flow" doc:name="Not Acceptable Response"/>
         </catch-exception-strategy>
         <catch-exception-strategy when="#[exception.causedBy(org.mule.module.apikit.exception.BadRequestException)]" doc:name="Caused By (org.mule.module.apikit.exception.BadRequestException)">
+            <set-variable variableName="errorMessage" value="#[exception.cause.message]" doc:name="Set Error Message"/>
             <flow-ref name="global-bad-request-response-sub-flow" doc:name="Bad Request Response"/>
         </catch-exception-strategy>
         <catch-exception-strategy when="#[exception.causedBy(java.lang.RuntimeException)]" doc:name="Caused by (java.lang.RuntimeException)">
