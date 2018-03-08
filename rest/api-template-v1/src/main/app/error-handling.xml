@@ -13,8 +13,8 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
             <spring:constructor-arg>
                 <spring:map key-type="java.lang.String" value-type="java.lang.String">
                     <spring:entry key="400" value="BAD_REQUEST" />
-                    <spring:entry key="401" value="Unauthorized" />
-                    <spring:entry key="403" value="Forbidden" />
+                    <spring:entry key="401" value="UNAUTHORIZED" />
+                    <spring:entry key="403" value="FORBIDDEN" />
                     <spring:entry key="404" value="RESOURCE_NOT_FOUND" />
                     <spring:entry key="405" value="METHOD_NOT_ALLOWED" />
                     <spring:entry key="406" value="NOT_ACCEPTABLE" />
