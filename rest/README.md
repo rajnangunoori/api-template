@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a geneirc API template that can be extended based on the use case's needs. It can be used as is or further extended based on the use case's needs. We recommend that it used by the wider community of Mule developers within the Organization.
+This is a generic API template that can be extended based on the use case's needs. It can be used as is or further extended based on the use case's needs. We recommend that it used by the wider community of Mule developers within the Organization.
 
 > **NOTE**: This template is suitable for **RESTful APIs only**. Please use a different template for SOAP-based APIs.
 
@@ -22,8 +22,8 @@ Use the following software in order to run this template:
 
 * Oracle Java Development Kit (JDK) 1.8
 * Apache Maven 3.2.1 or later (ensure Mule EE Repository is setup with credentials)
-* Anypoint Studio 6.2.5 or later, including the following extensions:
-  * Mule ESB Server Runtime 3.8.4 EE
+* Anypoint Studio 6.4.3 or later, including the following extensions:
+  * Mule ESB Server Runtime 3.9.0 EE
 
 The project will need to be imported following the POM import wizard. Once the project is imported in Anypoint Studio, it can be configured via its properties configuration files: `local.properties`, `dev.properties`, `qua.properties`, `sit.properties`, and `prod.properties`.
 
@@ -39,13 +39,9 @@ The template is designed to be customized. Basic customization should be done ev
 
 ![](./images/customize_02.png)
 
-(3) Open the `pom.xml` file in the Anypoint Studio project to update it with the actual Maven artifact's coordinates. Update `<groupId>` with the actual package name (e.g. `com.mycompany`). Change `<artifactId>` with the project name that has been set in the step above (e.g. `my-new-api-v1`). Save the `pom.xml` file and let Anypoint Studio re-build the project.
+(3) Open the `pom.xml` file in the Anypoint Studio project to update it with the actual Maven artifact's coordinates. Update `<groupId>` with the actual package name (e.g. `com.mycompany`). Update `<api.build.version>` and `<api.build.application>` properties respectively with the API version and application name set in step 1 (e.g. `v1` and `my-new-api`). Save the `pom.xml` file and let Anypoint Studio re-build the project.
 
 ![](./images/customize_03.png)
-
-(4) Update `log4j2.xml` file under `src/main/resources` by renaming all the occurrences of `api-template-v1` in the `<RollingFile>` element with the same name used for the project's root folder above (e.g. `my-new-api-v1`). Leave all the remaining parts of `log4j2.xml` unchanged and just update the `api-template-v1` occurrences where they appear in the file. See picture below for an example.
-
-![](./images/customize_04.png)
 
 ## Properties Configuration
 
@@ -63,7 +59,7 @@ When the application is deployed to CloudHub, the environment can be specified b
 
 ![](./images/properties_01.png)
 
-If your application is deployed via Continuous Integration job, you will need to specify the `mule.env` property along with any sensitive application properties as part of your deployment job. The properties can be specified in the configuration of the link:https://docs.mulesoft.com/mule-user-guide/v/3.8/mule-maven-plugin[Mule Plugin for Maven].
+If your application is deployed via Continuous Integration job, you will need to specify the `mule.env` property along with any sensitive application properties as part of your deployment job. The properties can be specified in the configuration of the link:https://docs.mulesoft.com/mule-user-guide/v/3.9/mule-maven-plugin[Mule Plugin for Maven].
 
 ```xml
 <plugin>
@@ -74,7 +70,7 @@ If your application is deployed via Continuous Integration job, you will need to
     <deploymentType>cloudhub</deploymentType>
     <!-- muleVersion is the runtime version
     as it appears on the CloudHub interface -->
-    <muleVersion>3.8.3</muleVersion>
+    <muleVersion>3.9.0</muleVersion>
     <region>eu-west-1</region>
     <workers>1</workers>
     <workerType>Micro</workerType>
@@ -125,7 +121,7 @@ The environment is set at configuration time by the team who performs the runtim
 wrapper.java.additional.<n>=-Dmule.env=prod
 ```
 
-The snippet below shows the configuration of the [Mule Plugin for Maven](https://docs.mulesoft.com/mule-user-guide/v/3.8/mule-maven-plugin) in case of CI deployment to on-premises Mule ESB runtime. As you can see, the `mule.env` property does not need to be specified.
+The snippet below shows the configuration of the [Mule Plugin for Maven](https://docs.mulesoft.com/mule-user-guide/v/3.9/mule-maven-plugin) in case of CI deployment to on-premises Mule ESB runtime. As you can see, the `mule.env` property does not need to be specified.
 
 ```xml
 <plugin>
@@ -173,7 +169,7 @@ wrapper.java.classpath.4=<SHARED_LOCATION_PATH>
 
 ## API Listener
 
-This template provides a pre-built API Listener configuration including an [HTTP Listener](https://docs.mulesoft.com/mule-user-guide/v/3.8/http-listener-connector) and an [APIKit Router](https://docs.mulesoft.com/apikit) pointing to a RAML file (`api.raml`), which is located under the `src/main/api` folder. The template is also provided with an [API Auto-Discovery](https://docs.mulesoft.com/api-manager/api-auto-discovery) global element, which is responsible for registering the API in the [API Manager](https://docs.mulesoft.com/api-manager/).
+This template provides a pre-built API Listener configuration including an [HTTP Listener](https://docs.mulesoft.com/mule-user-guide/v/3.9/http-listener-connector) and an [APIKit Router](https://docs.mulesoft.com/apikit) pointing to a RAML file (`api.raml`), which is located under the `src/main/api` folder. The template is also provided with an [API Auto-Discovery](https://docs.mulesoft.com/api-manager/api-auto-discovery) global element, which is responsible for registering the API in the [API Manager](https://docs.mulesoft.com/api-manager/).
 
 ### API Auto-Discovery
 
@@ -181,10 +177,11 @@ The API Auto-Discovery element can be configured via the two properties showed i
 
 ```
 # API Configuration
-api.name=API Template
-api.version=v1
-api.application.name=api-template
+api.name=groupId:8d05377b-112c-43ef-994b-4cd8143e6c79.obd:assetId:my-new-api
+api.version=v1:9178295
 ```
+
+The values for `api.name` and `api.version` properties are taken from the settings section of the API instance configuration page in the API Manager console.
 
 ### HTTP Listener Connector
 
@@ -196,7 +193,7 @@ The default configuration for the API HTTP Listener provided in this template is
 # API Configuration
 api.http.listener.host=0.0.0.0
 api.http.listener.port=8081
-api.http.listener.path=/api/${api.application.name}/${api.version}/*
+api.http.listener.path=/api/${api.build.application}/${api.build.version}/*
 ```
 
 It is possible to change the HTTP Listener Connector configuration by accessing to the connector declared in the `api.xml` file in `src/main/app` folder. Once in the `api.xml` file, double-click on the **HTTP** icon at the beginning of the flow and navigate to the global HTTP Listener Configuration from the properties configuration window.
@@ -205,7 +202,7 @@ It is possible to change the HTTP Listener Connector configuration by accessing 
 
 #### API Gateway Domain (On-Premises Only)
 
-Most often on-premises Mule API applications are associated to a [Mule Domain](https://docs.mulesoft.com/mule-user-guide/v/3.8/shared-resources) specifically created for APIs (API Gateway Domain). The API Gateway Domain's purpose is to ensure that all the APIs deployed within a Mule Runtime instance share the same HTTP listener. In this way all the APIs listen on the same host and TCP port. Using an API Gateway Domain is not mandatory, but in absence of a shared domain, each API needs to be exposed on a different TCP port.
+Most often on-premises Mule API applications are associated to a [Mule Domain](https://docs.mulesoft.com/mule-user-guide/v/3.9/shared-resources) specifically created for APIs (API Gateway Domain). The API Gateway Domain's purpose is to ensure that all the APIs deployed within a Mule Runtime instance share the same HTTP listener. In this way all the APIs listen on the same host and TCP port. Using an API Gateway Domain is not mandatory, but in absence of a shared domain, each API needs to be exposed on a different TCP port.
 
 (1) In order to bind your API Template to an API Gateway Domain, [download](../domain/api-gateway) and open the `api-gateway` domain project in Anypoint Studio. Then, in the `api-template-v1` (or whatever API project), double-click on `mule-project.xml` in the project root folder, and select the appropriate API Gateway Domain.
 
@@ -244,7 +241,7 @@ api.console.enabled=false
 
 The API Template comes with embedded Error Handling configuration. This ensures that the most common error scenarios are dealt with consistently, and an error response is returned to the caller accordingly.
 
-The Error Handling configuration is specified in the `error-handling.xml` file inside the `src/main/app` folder of the Anypoint Studio project. The configuration includes a global [Choice Exception Strategy](https://docs.mulesoft.com/mule-user-guide/v/3.8/choice-exception-strategy) (`global-exception-strategy`) that wraps a number of different [Catch Exception Strategies](https://docs.mulesoft.com/mule-user-guide/v/3.8/catch-exception-strategy), which are executed based on the exception thrown at run time.
+The Error Handling configuration is specified in the `error-handling.xml` file inside the `src/main/app` folder of the Anypoint Studio project. The configuration includes a global [Choice Exception Strategy](https://docs.mulesoft.com/mule-user-guide/v/3.9/choice-exception-strategy) (`global-exception-strategy`) that wraps a number of different [Catch Exception Strategies](https://docs.mulesoft.com/mule-user-guide/v/3.9/catch-exception-strategy), which are executed based on the exception thrown at run time.
 
 The global Choice Exception Strategy is set on the `api-main` flow inside the `api.xml` file. This ensures that every exception thrown is always caught and dealt with.
 
@@ -286,11 +283,11 @@ In order to do so, drag a **Choice Exception Strategy** scope into the **Error H
 
 ![](./images/error_handling_02.png)
 
-Once the Choice Exception Strategy scope is positioned, drag a **Catch Exception Strategy** scope inside the Choice Exception Strategy scope and use [Mule Expression Language (MEL)](https://docs.mulesoft.com/mule-user-guide/v/3.8/mule-expression-language-mel) to evaluate the exception type.
+Once the Choice Exception Strategy scope is positioned, drag a **Catch Exception Strategy** scope inside the Choice Exception Strategy scope and use [Mule Expression Language (MEL)](https://docs.mulesoft.com/mule-user-guide/v/3.9/mule-expression-language-mel) to evaluate the exception type.
 
 ![](./images/error_handling_03.png)
 
-Inside the Catch Exception Strategy, you can configure the logic to generate the custom error response according to the type of exception that has been thrown. The error response can be customized by setting the `errorMessage` and `errorDescription` flow variables using a [Variable Transformer](https://docs.mulesoft.com/mule-user-guide/v/3.8/variable-transformer-reference). The error message can be finally generated by using a [Flow Reference Component](https://docs.mulesoft.com/mule-user-guide/v/3.8/flow-reference-component-reference) that points to one of the pre-built sub flows declared in the `error-handling.xml` configuration file (e.g. `global-resource-not-found-response-sub-flow`). The sub flow ensures that the error response is generated including the appropriate HTTP status code and JSON payload.
+Inside the Catch Exception Strategy, you can configure the logic to generate the custom error response according to the type of exception that has been thrown. The error response can be customized by setting the `errorMessage` and `errorDescription` flow variables using a [Variable Transformer](https://docs.mulesoft.com/mule-user-guide/v/3.9/variable-transformer-reference). The error message can be finally generated by using a [Flow Reference Component](https://docs.mulesoft.com/mule-user-guide/v/3.9/flow-reference-component-reference) that points to one of the pre-built sub flows declared in the `error-handling.xml` configuration file (e.g. `global-resource-not-found-response-sub-flow`). The sub flow ensures that the error response is generated including the appropriate HTTP status code and JSON payload.
 
 ![](./images/error_handling_04.png)
 
