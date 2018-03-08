@@ -59,7 +59,7 @@ When the application is deployed to CloudHub, the environment can be specified b
 
 ![](./images/properties_01.png)
 
-If your application is deployed via Continuous Integration job, you will need to specify the `mule.env` property along with any sensitive application properties as part of your deployment job. The properties can be specified in the configuration of the link:https://docs.mulesoft.com/mule-user-guide/v/3.9/mule-maven-plugin[Mule Plugin for Maven].
+If your application is deployed via Continuous Integration job, you will need to specify the `mule.env` property along with any sensitive application properties as part of your deployment job. The properties can be specified in the configuration of the [Mule Plugin for Maven](https://docs.mulesoft.com/mule-user-guide/v/3.9/mule-maven-plugin).
 
 ```xml
 <plugin>
