@@ -3,7 +3,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.mycompany</groupId>
-	<artifactId>api-template-v1</artifactId>
+	<artifactId>${api.build.application}-${api.build.version}</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule</packaging>
 	<name>Mule API Application</name>
@@ -19,6 +19,7 @@
 		<munit.version>1.3.7</munit.version>
 		<mule.munit.support.version>3.9.1</mule.munit.support.version>
 		<api.build.version>v1</api.build.version>
+		<api.build.application>api-template</api.build.application>
 	</properties>
 
 	<build>
